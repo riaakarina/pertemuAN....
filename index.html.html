@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Hyperlink</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: white;
+            color: black;
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        nav {
+            border-top: 3px solid blue;
+            border-bottom: 3px solid blue;
+            padding: 15px 0;
+            margin-bottom: 25px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            color: blue;
+            font-size: 18px;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        img {
+            width: 200px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Website Pribadi Saya</h1>
+
+    <nav>
+        <a href="#home" onclick="bukaHalaman('home')">Home</a>
+        |
+        <a href="#profil" onclick="bukaHalaman('profil')">Profil</a>
+        |
+        <a href="#about" onclick="bukaHalaman('about')">About</a>
+        |
+        <a href="#gallery" onclick="bukaHalaman('gallery')">Gallery</a>
+        |
+        <a href="#kontak" onclick="bukaHalaman('kontak')">Kontak</a>
+    </nav>
+
+    <!-- HALAMAN HOME -->
+    <section id="home" class="active">
+
+        <h2>Assalamualaikum Wr. Wb.</h2>
+
+        <p>
+            Apa kabar semua. Salam kenal ini adalah web perdanaku.
+            Web ini berisi informasi tentang kegemaranku.
+            Semoga web ini dapat menginspirasi Anda pada waktu liburan.
+        </p>
+
+        <p>
+            Kunjungi
+            <a href="https://www.google.com" target="_blank">
+                Google
+            </a>
+            untuk mencari informasi di internet.
+        </p>
+
+        <p>
+            Silakan hubungi saya jika ada yang ingin didiskusikan
+            <a href="mailto:emailanda@gmail.com">
+                Email
+            </a>.
+        </p>
+
+    </section>
+
+    <!-- HALAMAN PROFIL -->
+<section id="profil">
+
+    <h2>Profil Saya</h2>
+
+    <table>
+        <tr>
+            <td>Nama</td>
+            <td>:</td>
+            <td>Ria Karina</td>
+        </tr>
+
+        <tr>
+            <td>Program Studi</td>
+            <td>:</td>
+            <td>Bisnis Digital</td>
+        </tr>
+
+        <tr>
+            <td>Universitas</td>
+            <td>:</td>
+            <td>Universitas Ma'soem</td>
+        </tr>
+
+        <tr>
+            <td>Hobi</td>
+            <td>:</td>
+            <td>Adventure</td>
+        </tr>
+    </table>
+
+    </section>
+
+    <!-- HALAMAN ABOUT -->
+    <section id="about">
+
+        <h2>Tentang Saya</h2>
+
+        <p>
+            Halo! Saya Ria Karina mahasiswa Bisnis Digital semester 3 
+            yang sedang belajar dan mengembangkan kemampuan di bidang bisnis, 
+            teknologi digital, kreativitas, dan dunia media sosial.
+            Di luar perkuliahan, saya suka menikmati keindahan alam, 
+            mengunjungi cafe-cafe cantik, dan hangout bersama teman-teman. 
+            Bagi saya, setiap perjalanan dan momen sederhana selalu punya cerita yang berkesan.
+        </p>
+
+    </section>
+
+    <!-- HALAMAN GALLERY -->
+    <section id="gallery">
+
+        <h2>Gallery Foto</h2>
+
+        <p>Berikut adalah kumpulan foto saya.</p>
+
+        <div id="galeri">
+    <img src="WhatsApp Image 2026-10-24 at 12.02.01.jpeg" width="200" alt="Foto 1">
+
+    </section>
+
+    <!-- HALAMAN KONTAK -->
+    <section id="kontak">
+
+        <h2>Kontak Saya</h2>
+
+        <p>
+            Terimakasih telah mengunjungi website saya. 
+            Anda bisa menghubungi saya melalui:
+        </p>
+        <p>
+            Email       : riaakarina@gmail.com
+        </p>
+        <p>
+             Instagram   : riakarina_
+        </p>
+
+    </section>
+
+    <script>
+        // Fungsi untuk berpindah halaman
+        function bukaHalaman(namaHalaman) {
+
+            const semuaHalaman = document.querySelectorAll("section");
+
+            semuaHalaman.forEach(function(halaman) {
+                halaman.classList.remove("active");
+            });
+
+            document.getElementById(namaHalaman)
+                .classList.add("active");
+        }
+
+        // Fungsi untuk menambahkan foto ke galeri
+        document.getElementById("pilihFoto")
+            .addEventListener("change", function() {
+
+                const daftarFoto = this.files;
+                const galeri = document.getElementById("galeri");
+
+                for (let i = 0; i < daftarFoto.length; i++) {
+
+                    if (!daftarFoto[i].type.startsWith("image/")) {
+                        continue;
+                    }
+
+                    const gambar = document.createElement("img");
+
+                    gambar.src = URL.createObjectURL(daftarFoto[i]);
+                    gambar.alt = daftarFoto[i].name;
+
+                    galeri.appendChild(gambar);
+                }
+
+                this.value = "";
+            });
+    </script>
+
+</body>
+</html>
